@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>js-carousel</title>
+
+    <style>
+      * {
+        margin: 0 auto;
+        box-sizing: border-box;
+      }
+      .container {
+        width: 500px;
+        height: 500px;
+        position: relative;
+        overflow: hidden;
+      }
+      #boxWrap {
+        display: flex;
+      }
+
+      #boxWrap div img {
+        width: 500px;
+        height: 300px;
+        color: #fff;
+      }
+      .btn {
+        position: absolute;
+        top: 50%;
+      }
+      .box1 {
+        background-color: tomato;
+      }
+      .box2 {
+        background-color: royalblue;
+      }
+      .box3 {
+        background-color: aquamarine;
+      }
+      .box4 {
+        background-color: maroon;
+      }
+      #next {
+        right: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div id="boxWrap">
+        <div>
+          <img
+            src="https://cdn.pixabay.com/photo/2016/11/18/17/20/living-room-1835923__480.jpg"
+            alt=""
+          />
+        </div>
+        <div>
+          <img
+            src="https://cdn.pixabay.com/photo/2016/11/18/17/46/house-1836070__480.jpg"
+            alt=""
+          />
+        </div>
+        <div>
+          <img
+            src="https://cdn.pixabay.com/photo/2015/04/10/17/03/pots-716579__480.jpg"
+            alt=""
+          />
+        </div>
+      </div>
+      <button class="btn" id="prev">prev</button>
+      <button class="btn" id="next">next</button>
+    </div>
+  </body>
+  <script>
+    const $prev = document.getElementById("prev");
+    const $next = document.getElementById("next");
+    const $boxWrap = document.getElementById("boxWrap");
+
+    let index = 0;
+
+    const handlePrevButton = () => {
+      if (index === 0) return;
+      index -= 1;
+      $boxWrap.style.transform = `translate3d(-${500 * index}px,0,0)`;
+      console.log(index);
+    };
+
+    const handleNextButton = () => {
+      if (index === 2) return;
+      index += 1;
+      $boxWrap.style.transform = `translate3d(-${500 * index}px,0,0)`;
+      console.log(
+        ($boxWrap.style.transform = `translate3d(-${500 * index}px,0,0)`)
+      );
+      console.log(index);
+    };
+
+    $prev.addEventListener("click", handlePrevButton);
+    $next.addEventListener("click", handleNextButton);
+  </script>
+</html>
