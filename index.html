@@ -94,13 +94,13 @@
     addImg();
 
     let index = 0;
+
+    const translate = (offset) => {
+      $boxWrap.style.transform = `translateX(-${offset}%)`;
+    };
     const autoMove = () => {
-      if (index === imgInfo.length - 1) {
-        index = 0;
-      } else {
-        index += 1;
-      }
-      $boxWrap.style.transform = `translateX(-${100 * index}%)`;
+      index === imgInfo.length - 1 ? (index = 0) : (index += 1);
+      translate(100 * index);
     };
 
     const move = setInterval(() => {
@@ -109,16 +109,15 @@
 
     const handlePrevButton = () => {
       clearInterval(move);
-      if (index === 0) return;
-      index -= 1;
-      $boxWrap.style.transform = `translateX(-${100 * index}%)`;
+      index === 0 ? null : (index -= 1);
+
+      translate(100 * index);
     };
 
     const handleNextButton = () => {
       clearInterval(move);
-      if (index === imgInfo.length - 1) return;
-      index += 1;
-      $boxWrap.style.transform = `translateX(-${100 * index}%)`;
+      index === imgInfo.length - 1 ? null : (index += 1);
+      translate(100 * index);
     };
 
     $prev.addEventListener("click", handlePrevButton);
